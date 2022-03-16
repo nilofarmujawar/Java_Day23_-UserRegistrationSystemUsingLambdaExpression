@@ -19,6 +19,7 @@ package com.day23;
  *       - NOTE – All rules must be passed
  * UC8 :- Rule4 – Has exactly 1 Special Character
  *        - NOTE – All rules must be passed
+ * UC9 :- Should clear all email samples provided separately
  */
 
 /**
@@ -274,6 +275,36 @@ public class UserRegistration {
         Matcher matcher = pattern.matcher(password);
         /**
          *  Return if the password matched the Regex
+         */
+        return matcher.matches();
+    }
+
+    /**
+     * Create a method name as emailAddressSample, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param emailId
+     * @return
+     */
+    public boolean emailAddressSample(String emailId) {
+        /**
+         * regex pattern for email
+         * 1)must contain character before @
+         * 2)must contain @ symbol after char
+         * 3)must contain char after @
+         * 4)must contain "."  symbol before com or in
+         */
+        String regex = "^[a-zA-Z0-9]+([+_.-][a-zA-Z0-9]+)*[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given useremail
+         * and regular expression.
+         */
+        Matcher matcher = pattern.matcher(emailId);
+        /**
+         * Return if the useremail matched the Regex
          */
         return matcher.matches();
     }

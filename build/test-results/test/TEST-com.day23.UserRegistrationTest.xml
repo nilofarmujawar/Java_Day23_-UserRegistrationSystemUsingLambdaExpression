@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.day23.UserRegistrationTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2022-03-16T09:51:51" hostname="DESKTOP-617Q1NQ" time="0.408">
+<testsuite name="com.day23.UserRegistrationTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2022-03-16T09:58:11" hostname="DESKTOP-617Q1NQ" time="0.453">
   <properties/>
-  <testcase name="givenPasswordRule2_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.077"/>
-  <testcase name="givenPassword_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.003"/>
-  <testcase name="givenLastName_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.004"/>
-  <testcase name="givenLastName_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.005"/>
-  <testcase name="givenEmail_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.006"/>
-  <testcase name="givenFirstName_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.004"/>
-  <testcase name="givenPasswordRule3_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.009"/>
-  <testcase name="givenPassword_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.002"/>
-  <testcase name="givenPasswordRule2_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.001"/>
-  <testcase name="givenPhoneNumber_WhenOurOfFormat_ShouldReturnFlase()" classname="com.day23.UserRegistrationTest" time="0.002"/>
-  <testcase name="givenPasswordRule3_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.134"/>
-  <testcase name="givenFirstName_WhenOurOfFormat_ShouldReturnFlase()" classname="com.day23.UserRegistrationTest" time="0.005"/>
-  <testcase name="givenEmail_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.013"/>
-  <testcase name="givenPasswordRule4_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.01"/>
-  <testcase name="givenPhoneNumber_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.007"/>
-  <testcase name="givenPasswordRule4_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.016"/>
+  <testcase name="givenPasswordRule2_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.132"/>
+  <testcase name="givenPassword_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.005"/>
+  <testcase name="givenLastName_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.003"/>
+  <testcase name="givenLastName_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenEmail_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.03"/>
+  <testcase name="givenFirstName_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.035"/>
+  <testcase name="givenEmail4_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.003"/>
+  <testcase name="givenPasswordRule3_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.003"/>
+  <testcase name="givenPassword_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.006"/>
+  <testcase name="givenPasswordRule2_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenPhoneNumber_WhenOurOfFormat_ShouldReturnFlase()" classname="com.day23.UserRegistrationTest" time="0.003"/>
+  <testcase name="givenPasswordRule3_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenFirstName_WhenOurOfFormat_ShouldReturnFlase()" classname="com.day23.UserRegistrationTest" time="0.003"/>
+  <testcase name="givenEmail_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenPasswordRule4_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.005"/>
+  <testcase name="givenPhoneNumber_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenPasswordRule4_WhenOurOfFormat_ShouldReturnFalse()" classname="com.day23.UserRegistrationTest" time="0.002"/>
+  <testcase name="givenEmail4_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

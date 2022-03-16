@@ -122,5 +122,18 @@ public class UserRegistrationTest {
         boolean result = userRegistration.passwordRule4("Bridelabz@@1");
         Assertions.assertEquals(false, result);
     }
-}
+    /**
+     * test case for uc 9 emailAddressSample
+     */
+    @Test
+    public void givenEmail4_WhenInFormat_ShouldReturnTrue() {
+        boolean result = userRegistration.emailAddressSample("nilofarm1118@gmail.com");
+        Assertions.assertEquals(true, result);
+    }
 
+    @Test
+    public void givenEmail4_WhenOurOfFormat_ShouldReturnFalse() {
+        boolean result = userRegistration.emailAddressSample("aabc.@gmail.com");
+        Assertions.assertEquals(false, result);
+    }
+}
