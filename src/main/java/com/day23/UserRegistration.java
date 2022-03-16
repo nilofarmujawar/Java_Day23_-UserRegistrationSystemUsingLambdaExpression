@@ -1,33 +1,35 @@
 package com.day23;
 
 /**
- * UC1 :- As a User need to enter a valid First Name
- *        - First name starts with Cap and has minimum 3 characters
- * UC2 :- As a User need to enter a valid Last Name
- *        - Last name starts with Cap and has minimum 3 characters
- * UC3 :- As a User need to enter  a valid email
- *        - E.g. abc.xyz@bl.co.in
- *        - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
- * UC4 :- As a User need to follow pre-defined Mobile Format
- *        - E.g. 91 9919819801
- *        - Country code follow by space and 10 digit number
- * UC5 :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
+ * UC1  :- As a User need to enter a valid First Name
+ *         - First name starts with Cap and has minimum 3 characters
+ * UC2  :- As a User need to enter a valid Last Name
+ *         - Last name starts with Cap and has minimum 3 characters
+ * UC3  :- As a User need to enter  a valid email
+ *         - E.g. abc.xyz@bl.co.in
+ *         - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
+ * UC4  :- As a User need to follow pre-defined Mobile Format
+ *         - E.g. 91 9919819801
+ *         - Country code follow by space and 10 digit number
+ * UC5  :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
  *         - NOTE – All rules must be passed
- * UC6 :- Rule2 – Should have at least 1 Upper Case
- *        - NOTE – All rules must be passed
- * UC7 :- Rule3 – Should  have at least 1 numeric number in the password
- *       - NOTE – All rules must be passed
- * UC8 :- Rule4 – Has exactly 1 Special Character
- *        - NOTE – All rules must be passed
- * UC9 :- Should clear all email samples provided separately
- * UC10 :-Write JUnit Test to validate the User Entry for First Name, Last Name,Email, Mobile, and Password.
+ * UC6  :- Rule2 – Should have at least 1 Upper Case
+ *         - NOTE – All rules must be passed
+ * UC7  :- Rule3 – Should  have at least 1 numeric number in the password
+ *         - NOTE – All rules must be passed
+ * UC8  :- Rule4 – Has exactly 1 Special Character
+ *         - NOTE – All rules must be passed
+ * UC9  :- Should clear all email samples provided separately
+ * UC10 :- Write JUnit Test to validate the User Entry for First Name, Last Name,Email, Mobile, and Password.
  *         - Write Junit Test for Happy as well as Sad test  case.
  *         - Happy Test Case validates the Entry Successfully
  *         - Sad Test Cases fails the Entry
  * UC11 :- Write JUnit Parameterised Test to validate multiple entry for the Email Address.
  * UC12 :- Refactor the Code to throw custom exceptions in case of Invalid User Details
- *        - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name,
- *          Email, Mobile, and Password
+ *         - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name,
+ *           Email, Mobile, and Password
+ * UC13 :- Refactor the Code to use Lambda Function to validate User Entry
+ *         - Use Lambda Function to validate First  Name, Last Name, Email, Mobile, and Password
  */
 
 /**
@@ -37,19 +39,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * create a class name as UserRegistration
- */
+ Purpose  - To validate all the use case through Lambda Expression
+ **/
+
+@FunctionalInterface
+interface UserDetailsValidationFI {
+    boolean validate(String x) throws UserRegistrationException;
+}
+
 public class UserRegistration {
 
     /**
-     * Created a method to validate first name
-     * @param firstName
-     * @return firstName
-     * @throws UserRegistrationException
+     * Created a method to validate first name using lambda expression
      */
-    public boolean firstName(String firstName) throws UserRegistrationException {
+    UserDetailsValidationFI validateFirstName = firstName -> {
         if (firstName == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (firstName.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -72,17 +77,14 @@ public class UserRegistration {
              */
             return matcher.matches();
         }
-    }
+    };
 
     /**
-     * Created a method to validate last name
-     * @param lastName
-     * @return lastname
-     * @throws UserRegistrationException
+     * Created a method to validate last name using lambda expression
      */
-    public boolean lastName(String lastName) throws UserRegistrationException {
+    UserDetailsValidationFI validateLastName = lastName -> {
         if (lastName == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (lastName.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -103,17 +105,14 @@ public class UserRegistration {
          * Return if the userlastname matched the Regex
          */
         return matcher.matches();
-    }
+    };
 
     /**
-     * Created a method to validate email address
-     * @param email
-     * @return email
-     * @throws UserRegistrationException
+     * Created a method to validate email address using lambda expression
      */
-    public boolean email(String email) throws UserRegistrationException {
+    UserDetailsValidationFI validateEmail = email -> {
         if (email == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (email.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -138,17 +137,14 @@ public class UserRegistration {
          * Return if the useremail matched the Regex
          */
         return matcher.matches();
-    }
+    };
 
     /**
-     * Created a method to validate phone number
-     * @param phoneNumber
-     * @return phoneno.
-     * @throws UserRegistrationException
+     * Created a method to validate phone number using lambda expression
      */
-    public boolean phoneNumber(String phoneNumber) throws UserRegistrationException {
+    UserDetailsValidationFI validatePhoneNumber = phoneNumber -> {
         if (phoneNumber == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (phoneNumber.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -169,17 +165,13 @@ public class UserRegistration {
          * Return if the useremail matched the Regex
          */
         return matcher.matches();
-    }
-
+    };
     /**
-     * Created a method to validate password according to rule 1
-     * @param password
-     * @return password
-     * @throws UserRegistrationException
+     * Created a method to validate password according to all the rules by using lambda expression
      */
-    public boolean passwordRule1(String password) throws UserRegistrationException {
+    UserDetailsValidationFI validatePassword1 = password -> {
         if (password == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (password.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -203,17 +195,13 @@ public class UserRegistration {
          *  Return if the password matched the Regex
          */
         return matcher.matches();
-    }
-
+    };
     /**
-     * Created a method to validate password according to rule 2
-     * @param password
-     * @return password
-     * @throws UserRegistrationException
+     * Created a method to validate password according to all the rules by using lambda expression
      */
-    public boolean passwordRule2(String password) throws UserRegistrationException {
+    UserDetailsValidationFI validatePassword2 = password -> {
         if (password == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (password.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -238,17 +226,13 @@ public class UserRegistration {
          *  Return if the password matched the Regex
          */
         return matcher.matches();
-    }
-
+    };
     /**
-     * Created a method to validate password according to rule 3
-     * @param password
-     * @return password
-     * @throws UserRegistrationException
+     * Created a method to validate password according to all the rules by using lambda expression
      */
-    public boolean passwordRule3(String password) throws UserRegistrationException {
+    UserDetailsValidationFI validatePassword3 = password -> {
         if (password == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (password.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -275,15 +259,11 @@ public class UserRegistration {
          * Return if the password matched the Regex
          */
         return matcher.matches();
-    }
-
+    };
     /**
-     * Created a method to validate password according to rule 4
-     * @param password
-     * @return password
-     * @throws UserRegistrationException
+     * Created a method to validate password according to all the rules by using lambda expression
      */
-    public boolean passwordRule4(String password) throws UserRegistrationException {
+    UserDetailsValidationFI validatePassword4 = password -> {
         if (password == null) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (password.length() == 0) {
@@ -313,17 +293,14 @@ public class UserRegistration {
          *  Return if the password matched the Regex
          */
         return matcher.matches();
-    }
+    };
 
     /**
-     * Created a method to validate all the emails in the list
-     * @param emailId
-     * @return valid mail id
-     * @throws UserRegistrationException
+     * Created a method to validate all the emails in the list using lambda expression
      */
-    public boolean emailIdValidator(String emailId) throws UserRegistrationException {
+    UserDetailsValidationFI validateEmailId = emailId -> {
         if (emailId == null) {
-            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
         } else if (emailId.length() == 0) {
             throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
         }
@@ -348,5 +325,5 @@ public class UserRegistration {
          * Return if the useremail matched the Regex
          */
         return matcher.matches();
-    }
+    };
 }

@@ -1,11 +1,13 @@
 package com.day23;
 
 import org.junit.Assert;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
+
 
 @RunWith(Parameterized.class)
 public class EmailTest1 {
@@ -46,42 +48,42 @@ public class EmailTest1 {
         });
     }
 
-    /**
-     *  Created a Test method for validating all the sample emails in the List and handling the exception
-     */
+    /*
+   Created a Test method for validating all the sample emails in the List and handling the exception
+    */
     @Test
     public void givenEmailIds_withExpectedResult_shouldPassAllTheTestCases() {
         try {
             UserRegistration userRegistration = new UserRegistration();
-            boolean result = userRegistration.email(this.email);
+            boolean result = userRegistration.validateEmail.validate(this.email);
             Assert.assertEquals(this.expectedResult, result);
         } catch (UserRegistrationException e) {
             System.out.println(e);
         }
     }
 
-    /**
-     *  Created a Test method for validating null value emails in the List and handling the exception
-     */
+    /*
+   Created a Test method for validating null value emails in the List and handling the exception
+    */
     @Test
     public void givenEmail1_null_ShouldThrowUserRegistrationException() {
         UserRegistration userRegistration = new UserRegistration();
         try {
-            userRegistration.email(null);
+            userRegistration.validateEmail.validate(null);
         } catch (UserRegistrationException e) {
             Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
             System.out.println(e);
         }
     }
 
-    /**
-     *  Created a Test method for validating empty emails in the List and handling the exception
-     */
+    /*
+    Created a Test method for validating empty emails in the List and handling the exception
+    */
     @Test
     public void givenEmail1_EMPTY_ShouldThrowUserRegistrationException() {
         UserRegistration userRegistration = new UserRegistration();
         try {
-            userRegistration.email("");
+            userRegistration.validateEmail.validate("");
         } catch (UserRegistrationException e) {
             Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
             System.out.println(e);
