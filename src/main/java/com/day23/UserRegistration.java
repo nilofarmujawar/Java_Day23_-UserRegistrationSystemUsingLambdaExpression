@@ -1,5 +1,4 @@
-package com.day23;
-/**
+package com.day23; /**
  * UC1 :- As a User need to enter a valid First Name
  *        - First name starts with Cap and has minimum 3 characters
  * UC2 :- As a User need to enter a valid Last Name
@@ -7,6 +6,9 @@ package com.day23;
  * UC3 :- As a User need to enter  a valid email
  *        - E.g. abc.xyz@bl.co.in
  *        - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
+ * UC4 :- As a User need to follow pre-defined Mobile Format
+ *        - E.g. 91 9919819801
+ *        - Country code follow by space and 10 digit number
  */
 
 /**
@@ -108,6 +110,31 @@ public class UserRegistration {
         return matcher.matches();
     }
 
+    /**
+     * Create a method name as  phoneNumber, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param phoneNumber
+     * @return mobileNo matched the Regex
+     */
+    public boolean phoneNumber(String phoneNumber) {
+        /**
+         * regex pattern for email
+         * 1) Country code follow by space and 10 digit number
+         */
+        String regex = "^[0-9]{2}\\s{1}[0-9]{10}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given phoneNumber
+         * and regular expression.
+         */
+        Matcher matcher = pattern.matcher(phoneNumber);
+        /**
+         * Return if the mobileNo matched the Regex
+         */
+        return matcher.matches();
+    }
+
 }
-
-
