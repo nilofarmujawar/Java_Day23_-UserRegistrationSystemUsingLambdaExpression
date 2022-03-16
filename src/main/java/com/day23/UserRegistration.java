@@ -4,6 +4,9 @@ package com.day23;
  *        - First name starts with Cap and has minimum 3 characters
  * UC2 :- As a User need to enter a valid Last Name
  *        - Last name starts with Cap and has minimum 3 character
+ * UC3 :- As a User need to enter  a valid email
+ *        - E.g. abc.xyz@bl.co.in
+ *        - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
  */
 
 /**
@@ -18,7 +21,7 @@ import java.util.regex.Pattern;
 public class UserRegistration {
 
     /**
-     * Create a method name as firstName, this method is boolean type than means its return op is true or false
+     * Create a method name as firstName, this method is boolean type that means its return op is true or false
      * type, also this is parameterized method
      *
      * @param firstName
@@ -47,8 +50,9 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as lastName, this method is boolean type than means its return op is true or false
+     * Create a method name as lastName, this method is boolean type that means its return op is true or false
      * type, also this is parameterized method
+     *
      * @param lastName
      * @return userlastname matched the Regex
      */
@@ -74,4 +78,36 @@ public class UserRegistration {
         return matcher.matches();
     }
 
+    /**
+     * Create a method name as emailAddress, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param email
+     * @return useremail matched the Regex
+     */
+    public boolean emailAddress(String email) {
+        /**
+         * regex pattern for email
+         * 1)must contain character before @
+         * 2)must contain @ symbol after char
+         * 3)must contain char after @
+         * 4)must contain "."  symbol before com or in
+         */
+        String regex = "^[a-zA-Z0-9]+([+_.-][a-zA-Z0-9]+)*[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given useremail
+         * and regular expression.
+         */
+        Matcher matcher = pattern.matcher(email);
+        /**
+         * Return if the useremail matched the Regex
+         */
+        return matcher.matches();
+    }
+
 }
+
+

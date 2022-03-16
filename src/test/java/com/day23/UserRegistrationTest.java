@@ -8,7 +8,7 @@ public class UserRegistrationTest {
     UserRegistration userRegistration = new UserRegistration();
 
     /**
-     * test case for uc 1
+     * test case for uc 1 firstName
      */
     @Test
     public void givenFirstName_WhenInFormat_ShouldReturnTrue() {
@@ -23,7 +23,7 @@ public class UserRegistrationTest {
     }
 
     /**
-     * test case for uc2
+     * test case for uc2 lastName
      */
     @Test
     public void givenLastName_WhenInFormat_ShouldReturnTrue() {
@@ -36,6 +36,20 @@ public class UserRegistrationTest {
         boolean result = userRegistration.lastName("mujawar");
         Assertions.assertEquals(false, result);
 
+    }
+    /**
+     * test case for uc3 email
+     */
+    @Test
+    public void givenEmail_WhenInFormat_ShouldReturnTrue() {
+        boolean result = userRegistration.emailAddress("abc@gmail.com.com");
+        Assertions.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenEmail_WhenOurOfFormat_ShouldReturnFalse() {
+        boolean result = userRegistration.emailAddress("abc()*@gmail.com");
+        Assertions.assertEquals(false, result);
     }
 
 }
