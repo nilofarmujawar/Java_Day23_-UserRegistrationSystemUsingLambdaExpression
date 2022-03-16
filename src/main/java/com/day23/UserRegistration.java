@@ -24,6 +24,7 @@ package com.day23;
  *         - Write Junit Test for Happy as well as Sad test  case.
  *         - Happy Test Case validates the Entry Successfully
  *         - Sad Test Cases fails the Entry.
+ * UC11 :- Write JUnit Parameterised Test to validate multiple entry for the Email Address.
  */
 
 /**
@@ -314,3 +315,4 @@ public class UserRegistration {
     }
 
 }
+
