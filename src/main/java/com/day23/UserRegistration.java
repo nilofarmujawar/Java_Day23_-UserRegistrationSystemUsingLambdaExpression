@@ -13,6 +13,8 @@ package com.day23;
  *        - Country code follow by space and 10 digit number
  * UC5 :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
  *         - NOTE – All rules must be passed
+ * UC6 :- Rule2 – Should have at least 1 Upper Case
+ *        - NOTE – All rules must be passed
  */
 
 /**
@@ -140,6 +142,13 @@ public class UserRegistration {
          */
         return matcher.matches();
     }
+
+    /**
+     * Create a method name as passwordRule1, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param password
+     * @return password matched the Regex
+     */
     public boolean passwordRule1(String password) {
         /**
          * regex pattern for password:must contain atleast 8 characters
@@ -163,5 +172,37 @@ public class UserRegistration {
         return matcher.matches();
     }
 
-}
+    /**
+     * Create a method name as passwordRule2, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param password
+     * @return password matched the Regex
+     */
+    public boolean passwordRule2(String password) {
+        /**
+         * Regex to check valid password.
+         * 1)must contain atleast 8 characters
+         * 2)must contain one UpperCase
+         * 3) ^ represents starting character of the string.
+         * 4) {8,} represents at least 8 characters or more than that characters.
+         * 5) [A-Z]{1,} represents an upper case alphabet that must occur at least once.
+         * 6) $ represents the end of the string.
+         */
+        String regex = "^[A-Z]{1,}[a-zA-z1-9]{8,}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given password
+         * and regular expression.
+         */
+        Matcher matcher = pattern.matcher(password);
+        /**
+         *  Return if the password matched the Regex
+         */
+        return matcher.matches();
 
+    }
+
+}

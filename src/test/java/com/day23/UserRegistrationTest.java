@@ -3,6 +3,7 @@ package com.day23;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 public class UserRegistrationTest {
 
     UserRegistration userRegistration = new UserRegistration();
@@ -65,6 +66,9 @@ public class UserRegistrationTest {
         boolean result = userRegistration.phoneNumber("+91 9604315270");
         Assertions.assertEquals(false, result);
     }
+    /**
+     * test case for uc5 password rule 1
+     */
     @Test
     public void givenPassword_WhenInFormat_ShouldReturnTrue() {
         boolean result = userRegistration.passwordRule1("bridgelabz");
@@ -76,7 +80,18 @@ public class UserRegistrationTest {
         boolean result = userRegistration.passwordRule1("Bri");
         Assertions.assertEquals(false, result);
     }
+    /**
+     * test case for uc6 password rule 2
+     */
+    @Test
+    public void givenPasswordRule2_WhenInFormat_ShouldReturnTrue() {
+        boolean result = userRegistration.passwordRule2("Bridgelabz");
+        Assertions.assertEquals(true, result);
+    }
 
+    @Test
+    public void givenPasswordRule2_WhenOurOfFormat_ShouldReturnFalse() {
+        boolean result = userRegistration.passwordRule2("bridgelabz");
+        Assertions.assertEquals(false, result);
+    }
 }
-
-
