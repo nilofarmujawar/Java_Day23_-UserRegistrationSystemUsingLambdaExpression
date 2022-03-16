@@ -94,4 +94,19 @@ public class UserRegistrationTest {
         boolean result = userRegistration.passwordRule2("bridgelabz");
         Assertions.assertEquals(false, result);
     }
+    /**
+     * test case for uc 7 password rule 3
+     */
+    @Test
+    public void givenPasswordRule3_WhenInFormat_ShouldReturnTrue() {
+        boolean result = userRegistration.passwordRule3("Bridgelabz1");
+        Assertions.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenPasswordRule3_WhenOurOfFormat_ShouldReturnFalse() {
+        boolean result = userRegistration.passwordRule3("Bridgelabz");
+        Assertions.assertEquals(false, result);
+    }
 }
+

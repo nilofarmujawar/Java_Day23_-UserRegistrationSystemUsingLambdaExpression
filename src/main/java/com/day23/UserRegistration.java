@@ -15,6 +15,8 @@ package com.day23;
  *         - NOTE – All rules must be passed
  * UC6 :- Rule2 – Should have at least 1 Upper Case
  *        - NOTE – All rules must be passed
+ * UC7 :- Rule3 – Should  have at least 1 numeric number in the password
+ *       - NOTE – All rules must be passed
  */
 
 /**
@@ -202,7 +204,43 @@ public class UserRegistration {
          *  Return if the password matched the Regex
          */
         return matcher.matches();
+    }
+
+    /**
+     *
+     * @param password
+     * @return
+     */
+    public boolean passwordRule3(String password) {
+        /**
+         * regex pattern for password:
+         * 1)must contain atleast 8 characters
+         * 2)must contain one UpperCase
+         * 3)should have 1 numericno.
+         *
+         * a) ^ represents starting character of the string.
+         * b) {8,} represents at least 8 characters or more than that characters.
+         * c) [a-zA-z1-9] represents a lower case alphabet must occur at least 8 or more than that.
+         * d) [A-Z]{1} represents an upper case alphabet that must occur at least once.
+         * e) [1-9]{1}represents a digit must occur at least once.
+         * f) $ represents the end of the string.
+         */
+        String regex = "^[A-Z]{1}+[a-zA-z1-9]{9,}[1-9]{1}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given password
+         *  and regular expression.
+         */
+        Matcher matcher = pattern.matcher(password);
+        /**
+         * Return if the password matched the Regex
+         */
+        return matcher.matches();
 
     }
 
 }
+
