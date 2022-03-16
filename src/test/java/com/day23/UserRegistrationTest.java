@@ -1,154 +1,408 @@
 package com.day23;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Assert;
+import org.junit.Test;
 
 public class UserRegistrationTest {
-
     UserRegistration userRegistration = new UserRegistration();
 
     /**
-     * test case for uc 1 firstName
+     *  Unit test for validating first name starts with Capital Letter
+     *  Used try catch block to handle the exception
      */
     @Test
-    public void givenFirstName_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.firstName("Nilofar");
-        Assertions.assertEquals(true, result);
+    public void givenFirstName_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.firstName("Nilofar");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenFirstName_WhenOurOfFormat_ShouldReturnFlase() {
-        boolean result = userRegistration.firstName("nilofar");
-        Assertions.assertEquals(false, result);
+    public void givenFirstName_WhenNotProper_ShouldReturnFlase() {
+        try {
+            boolean result = userRegistration.firstName("nilofar");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenFirstName_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.firstName(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenFirstName_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.firstName("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
     }
 
     /**
-     * test case for uc2 lastName
+     * Unit test for validating last name starts with Capital Letter
+     *  Used try catch block to handle the exception
      */
     @Test
-    public void givenLastName_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.lastName("Mujawar");
-        Assertions.assertEquals(true, result);
+    public void givenLastName_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.lastName("Mujawar");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenLastName_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.lastName("mujawar");
-        Assertions.assertEquals(false, result);
-
+    public void givenLastName_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.lastName("mujawar");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenLAstName_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.lastName(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenLastName_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.lastName("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc3 email
+     * Unit test for validating email address
+     *  Used try catch block to handle the exception
      */
     @Test
-    public void givenEmail_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.emailAddress("abc@gmail.com.com");
-        Assertions.assertEquals(true, result);
+    public void givenEmail_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.email("nilofarmujawar1@gmail.com");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenEmail_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.emailAddress("abc()*@gmail.com");
-        Assertions.assertEquals(false, result);
+    public void givenEmail_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.email("abc()*@gmail.com");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenEmail_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.email(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenEmail_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            boolean result = userRegistration.email("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc4 Mobile no.
+     * Unit test for validating phone number in a pre-defined format
+     *   Used try catch block to handle the exception
      */
     @Test
-    public void givenPhoneNumber_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.phoneNumber("91 9604315270");
-        Assertions.assertEquals(true, result);
+    public void givenPhoneNumber_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.phoneNumber("91 8765599888");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenPhoneNumber_WhenOurOfFormat_ShouldReturnFlase() {
-        boolean result = userRegistration.phoneNumber("+91 9604315270");
-        Assertions.assertEquals(false, result);
+    public void givenPhoneNumber_WhenNotProper_ShouldReturnFlase() {
+        try {
+            boolean result = userRegistration.phoneNumber("+91 67599888");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenPhoneNumber_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.phoneNumber(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenPhoneNumber_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.phoneNumber("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc5 password rule 1
+     *  Unit test for validating password with minimum 8 characters
+     *   Used try catch block to handle the exception
      */
     @Test
-    public void givenPassword_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.passwordRule1("bridgelabz");
-        Assertions.assertEquals(true, result);
+    public void givenPasswordRule1_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.passwordRule1("bridgelabz");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenPassword_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.passwordRule1("Bri");
-        Assertions.assertEquals(false, result);
+    public void givenPasswordRule1_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.passwordRule1("psw@");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenPasswordRule1_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule1(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenPassWordRule1_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule1("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc6 password rule 2
+     * Unit test for validating password should contain atleast one upper case
+     *    Used try catch block to handle the exception
      */
     @Test
-    public void givenPasswordRule2_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.passwordRule2("Bridgelabz");
-        Assertions.assertEquals(true, result);
+    public void givenPasswordRule2_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.passwordRule2("Bridgelabz");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenPasswordRule2_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.passwordRule2("bridgelabz");
-        Assertions.assertEquals(false, result);
+    public void givenPasswordRule2_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.passwordRule2("psw@");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenPasswordRule2_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule2(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenPassWordRule2_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule2("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc 7 password rule 3
+     * Unit test for validating password should contain atleast one numeric value
+     *   Used try catch block to handle the exception
      */
     @Test
-    public void givenPasswordRule3_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.passwordRule3("Bridgelabz1");
-        Assertions.assertEquals(true, result);
+    public void givenPasswordRule3_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.passwordRule3("Bridgelabz1");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenPasswordRule3_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.passwordRule3("Bridgelabz");
-        Assertions.assertEquals(false, result);
+    public void givenPasswordRule3_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.passwordRule3("123456789");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenPassWordRule3_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule3(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenPassWordRule3_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule3("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc 8 password rule 4
+     * Unit test for validating password should contain atleast one special character
+     *  Used try catch block to handle the exception
      */
     @Test
-    public void givenPasswordRule4_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.passwordRule4("Bridgelabz@1");
-        Assertions.assertEquals(true, result);
+    public void givenPasswordRule4_WhenProper_ShouldReturnTrue() {
+        try {
+            boolean result = userRegistration.passwordRule4("Bridgelabz@1");
+            Assert.assertEquals(true, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenPasswordRule4_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.passwordRule4("Bridelabz@@1");
-        Assertions.assertEquals(false, result);
+    public void givenPasswordRule4_WhenNotProper_ShouldReturnFalse() {
+        try {
+            boolean result = userRegistration.passwordRule4("@@@@@@@@@A");
+            Assert.assertEquals(false, result);
+        } catch (UserRegistrationException e) {
+            System.out.println(e);
+        }
     }
+
+    @Test
+    public void givenPassWordRule4_null_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule4(null);
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void givenPassWordRule4_emptyString_ShouldThrowUserRegistrationException() {
+        try {
+            userRegistration.passwordRule4("");
+        } catch (UserRegistrationException e) {
+            Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
+            System.out.println(e);
+        }
+    }
+
     /**
-     * test case for uc 9 emailAddressSample
+     * Unit test for validating mood of user happy or sad
+     *   Used try catch block to handle the exception
+     * @throws MoodAnalyserException
      */
     @Test
-    public void givenEmail4_WhenInFormat_ShouldReturnTrue() {
-        boolean result = userRegistration.emailAddressSample("nilofarm1118@gmail.com");
-        Assertions.assertEquals(true, result);
+    public void givenMessage_WhenHappy_ShouldReturnEntrySuccessful() throws MoodAnalyserException {
+        try {
+            String result = MoodAnalyser.analyseMood("User is Happy");
+            Assert.assertEquals("Entry Successful", result);
+        } catch (MoodAnalyserException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenEmail4_WhenOurOfFormat_ShouldReturnFalse() {
-        boolean result = userRegistration.emailAddressSample("aabc.@gmail.com");
-        Assertions.assertEquals(false, result);
-    }
-    /**
-     * test case for uc 10 mood analyser
-     */
-    @Test
-    public void givenMessage_WhenHappy_ShouldReturnEntrySuccessful() {
-        String result = MoodAnalyser.analyseMood("I am in  Happy mood");
-        Assertions.assertEquals("Entry Successful", result);
+    public void givenMessage_WhenNotProper_ShouldReturnEntryFailed() throws MoodAnalyserException {
+        try {
+            String result = MoodAnalyser.analyseMood("User is Sad");
+            Assert.assertEquals("Entry Failed", result);
+        } catch (MoodAnalyserException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenEmail2_WhenNotProper_ShouldReturnEntryFailed() {
-        String result = MoodAnalyser.analyseMood("I am in Sad mood");
-        Assertions.assertEquals("Entry Failed", result);
+    public void givenMessage_NULL_ShouldReturnMoodAnalyserException() throws MoodAnalyserException {
+        MoodAnalyser moodAnalyser = new MoodAnalyser();
+        try {
+            MoodAnalyser.analyseMood(null);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.type.NULL, e.type);
+        }
     }
 
+    @Test
+    public void givenMessage_EMPTY_ShouldReturnMoodAnalyserException() throws MoodAnalyserException {
+        MoodAnalyser moodAnalyser = new MoodAnalyser();
+        try {
+            MoodAnalyser.analyseMood("");
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.type.EMPTY, e.type);
+        }
+    }
 }
+
+
+ 

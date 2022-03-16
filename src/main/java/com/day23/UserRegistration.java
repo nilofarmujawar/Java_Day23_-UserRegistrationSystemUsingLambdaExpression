@@ -4,7 +4,7 @@ package com.day23;
  * UC1 :- As a User need to enter a valid First Name
  *        - First name starts with Cap and has minimum 3 characters
  * UC2 :- As a User need to enter a valid Last Name
- *        - Last name starts with Cap and has minimum 3 character
+ *        - Last name starts with Cap and has minimum 3 characters
  * UC3 :- As a User need to enter  a valid email
  *        - E.g. abc.xyz@bl.co.in
  *        - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
@@ -23,66 +23,75 @@ package com.day23;
  * UC10 :-Write JUnit Test to validate the User Entry for First Name, Last Name,Email, Mobile, and Password.
  *         - Write Junit Test for Happy as well as Sad test  case.
  *         - Happy Test Case validates the Entry Successfully
- *         - Sad Test Cases fails the Entry.
+ *         - Sad Test Cases fails the Entry
  * UC11 :- Write JUnit Parameterised Test to validate multiple entry for the Email Address.
+ * UC12 :- Refactor the Code to throw custom exceptions in case of Invalid User Details
+ *        - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name,
+ *          Email, Mobile, and Password
  */
 
 /**
- * import matcher class and pattern class
+ *  import matcher class and pattern class
  */
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  * create a class name as UserRegistration
  */
 public class UserRegistration {
 
     /**
-     * Create a method name as firstName, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
-     *
+     * Created a method to validate first name
      * @param firstName
-     * @return firstname matched the regex
+     * @return firstName
+     * @throws UserRegistrationException
      */
-    public boolean firstName(String firstName) {
-        /**
-         * Regex to check valid firstname
-         * 1) First name starts with Cap and has minimum 3 characters
-         */
-        String regex = "^[A-Z]{1}[a-z]{3,}";
-        /**
-         * First, the pattern is created using the Pattern.compile() method
-         * The first parameter indicates which pattern is being searched for
-         */
-        Pattern pattern = Pattern.compile(regex);
-        /**
-         * The matcher() method is used to search for the pattern in a string.
-         * It returns a Matcher object which contains information about the search that was performed.
-         */
-        Matcher match = pattern.matcher(firstName);
-        /**
-         * Return if the firsName matched the Regex
-         */
-        return match.matches();
+    public boolean firstName(String firstName) throws UserRegistrationException {
+        if (firstName == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (firstName.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
+        {
+            /**
+             *  Regex to check valid userlastname.
+             */
+            String regex = "^[A-Z]{1}[a-z]{2,}$";
+            /**
+             *  Compile the ReGex
+             */
+            Pattern pattern = Pattern.compile(regex);
+            /**
+             * Pattern class contains matcher() method to find matching between given username
+             * and regular expression.
+             */
+            Matcher matcher = pattern.matcher(firstName);
+            /**
+             * Return if the username matched the Regex
+             */
+            return matcher.matches();
+        }
     }
 
     /**
-     * Create a method name as lastName, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
-     *
+     * Created a method to validate last name
      * @param lastName
-     * @return userlastname matched the Regex
+     * @return lastname
+     * @throws UserRegistrationException
      */
-
-    public boolean lastName(String lastName) {
+    public boolean lastName(String lastName) throws UserRegistrationException {
+        if (lastName == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (lastName.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
          *  Regex to check valid userlastname.
-         *  1) Last name starts with Cap and has minimum 3 character
          */
-        String regex = "^[A-Z]{1}[a-z]{3,}";
+        String regex = "^[A-Z]{1}[a-z]{2,}$";
         /**
-         *  Compile the Regex
+         *  Compile the ReGex
          */
         Pattern pattern = Pattern.compile(regex);
         /**
@@ -97,12 +106,17 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as emailAddress, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate email address
      * @param email
-     * @return useremail matched the Regex
+     * @return email
+     * @throws UserRegistrationException
      */
-    public boolean emailAddress(String email) {
+    public boolean email(String email) throws UserRegistrationException {
+        if (email == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (email.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
          * regex pattern for email
          * 1)must contain character before @
@@ -110,7 +124,7 @@ public class UserRegistration {
          * 3)must contain char after @
          * 4)must contain "."  symbol before com or in
          */
-        String regex = "^[a-zA-Z0-9]+([+_.-][a-zA-Z0-9]+)*[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?";
+        String regex = "^[a-z]{3,}([_+-.]?[a-z0-9]{3,}+)*@[a-z0-9]+.[a-z]{2,3}+([.,][a-z]{2,3}+)*$";
         /**
          * Compile the Regex
          */
@@ -127,15 +141,19 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as  phoneNumber, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate phone number
      * @param phoneNumber
-     * @return mobileNo matched the Regex
+     * @return phoneno.
+     * @throws UserRegistrationException
      */
-    public boolean phoneNumber(String phoneNumber) {
+    public boolean phoneNumber(String phoneNumber) throws UserRegistrationException {
+        if (phoneNumber == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (phoneNumber.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
-         * regex pattern for email
-         * 1) Country code follow by space and 10 digit number
+         *  regex pattern for email
          */
         String regex = "^[0-9]{2}\\s{1}[0-9]{10}$";
         /**
@@ -143,28 +161,33 @@ public class UserRegistration {
          */
         Pattern pattern = Pattern.compile(regex);
         /**
-         * Pattern class contains matcher() method to find matching between given phoneNumber
+         * Pattern class contains matcher() method to find matching between given useremail
          * and regular expression.
          */
         Matcher matcher = pattern.matcher(phoneNumber);
         /**
-         * Return if the mobileNo matched the Regex
+         * Return if the useremail matched the Regex
          */
         return matcher.matches();
     }
 
     /**
-     * Create a method name as passwordRule1, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate password according to rule 1
      * @param password
-     * @return password matched the Regex
+     * @return password
+     * @throws UserRegistrationException
      */
-    public boolean passwordRule1(String password) {
+    public boolean passwordRule1(String password) throws UserRegistrationException {
+        if (password == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (password.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
-         * regex pattern for password:must contain atleast 8 characters
-         * 1) ^ represents starting character of the string.
-         * 2) {8,} represents at least 8 characters and more than characters.
-         * 3) $ represents the end of the string.
+         * Regex to check valid password.
+         * ^ represents starting character of the string.
+         * .{8,} represents at least 8 characters and more than characters.
+         * $ represents the end of the string.
          */
         String regex = "^[a-zA-z1-9]{8,}$";
         /**
@@ -183,20 +206,23 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as passwordRule2, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate password according to rule 2
      * @param password
-     * @return password matched the Regex
+     * @return password
+     * @throws UserRegistrationException
      */
-    public boolean passwordRule2(String password) {
+    public boolean passwordRule2(String password) throws UserRegistrationException {
+        if (password == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (password.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
          * Regex to check valid password.
-         * 1)must contain atleast 8 characters
-         * 2)must contain one UpperCase
-         * 3) ^ represents starting character of the string.
-         * 4) {8,} represents at least 8 characters or more than that characters.
-         * 5) [A-Z]{1,} represents an upper case alphabet that must occur at least once.
-         * 6) $ represents the end of the string.
+         * 1) ^ represents starting character of the string.
+         * 2) {8,} represents at least 8 characters or more than that characters.
+         * 3) [A-Z]{1,} represents an upper case alphabet that must occur at least once.
+         * 4) $ represents the end of the string.
          */
         String regex = "^[A-Z]{1,}[a-zA-z1-9]{8,}$";
         /**
@@ -215,26 +241,27 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as passwordRule3, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate password according to rule 3
      * @param password
-     * @return password matched the Regex
+     * @return password
+     * @throws UserRegistrationException
      */
-    public boolean passwordRule3(String password) {
+    public boolean passwordRule3(String password) throws UserRegistrationException {
+        if (password == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (password.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
-         * regex pattern for password:
-         * 1)must contain atleast 8 characters
-         * 2)must contain one UpperCase
-         * 3)should have 1 numericno.
-         *
-         * a) ^ represents starting character of the string.
-         * b) {8,} represents at least 8 characters or more than that characters.
-         * c) [a-zA-z1-9] represents a lower case alphabet must occur at least 8 or more than that.
-         * d) [A-Z]{1} represents an upper case alphabet that must occur at least once.
-         * e) [1-9]{1}represents a digit must occur at least once.
-         * f) $ represents the end of the string.
+         * Regex to check valid password.
+         * 1) ^ represents starting character of the string.
+         * 2) {8,} represents at least 8 characters or more than that characters.
+         * 3) [a-zA-z1-9] represents a lower case alphabet must occur at least 8 or more than that.
+         * 4) [A-Z]{1} represents an upper case alphabet that must occur at least once.
+         * 5) [1-9]{1}represents a digit must occur at least once.
+         * 6) $ represents the end of the string.
          */
-        String regex = "^[A-Z]{1}+[a-zA-z1-9]{9,}[1-9]{1}$";
+        String regex =  "^[A-Z]{1}+[a-zA-z1-9]{9,}[1-9]{1}$";
         /**
          * Compile the Regex
          */
@@ -248,16 +275,20 @@ public class UserRegistration {
          * Return if the password matched the Regex
          */
         return matcher.matches();
-
     }
 
     /**
-     * Create a method name as passwordRule4, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate password according to rule 4
      * @param password
-     * @return password matched the Regex
+     * @return password
+     * @throws UserRegistrationException
      */
-    public boolean passwordRule4(String password) {
+    public boolean passwordRule4(String password) throws UserRegistrationException {
+        if (password == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, " Input can't be Null");
+        } else if (password.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
          * Regex to check valid password.
          * 1) ^ represents starting character of the string.
@@ -285,12 +316,17 @@ public class UserRegistration {
     }
 
     /**
-     * Create a method name as emailAddressSample, this method is boolean type that means its return op is true or false
-     * type, also this is parameterized method
+     * Created a method to validate all the emails in the list
      * @param emailId
-     * @return
+     * @return valid mail id
+     * @throws UserRegistrationException
      */
-    public boolean emailAddressSample(String emailId) {
+    public boolean emailIdValidator(String emailId) throws UserRegistrationException {
+        if (emailId == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (emailId.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
         /**
          * regex pattern for email
          * 1)must contain character before @
@@ -313,6 +349,4 @@ public class UserRegistration {
          */
         return matcher.matches();
     }
-
 }
-
