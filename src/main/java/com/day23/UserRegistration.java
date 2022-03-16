@@ -1,4 +1,6 @@
-package com.day23; /**
+package com.day23;
+
+/**
  * UC1 :- As a User need to enter a valid First Name
  *        - First name starts with Cap and has minimum 3 characters
  * UC2 :- As a User need to enter a valid Last Name
@@ -9,6 +11,8 @@ package com.day23; /**
  * UC4 :- As a User need to follow pre-defined Mobile Format
  *        - E.g. 91 9919819801
  *        - Country code follow by space and 10 digit number
+ * UC5 :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
+ *         - NOTE – All rules must be passed
  */
 
 /**
@@ -136,5 +140,28 @@ public class UserRegistration {
          */
         return matcher.matches();
     }
+    public boolean passwordRule1(String password) {
+        /**
+         * regex pattern for password:must contain atleast 8 characters
+         * 1) ^ represents starting character of the string.
+         * 2) {8,} represents at least 8 characters and more than characters.
+         * 3) $ represents the end of the string.
+         */
+        String regex = "^[a-zA-z1-9]{8,}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         *  Pattern class contains matcher() method to find matching between given password
+         *  and regular expression.
+         */
+        Matcher matcher = pattern.matcher(password);
+        /**
+         *  Return if the password matched the Regex
+         */
+        return matcher.matches();
+    }
 
 }
+
