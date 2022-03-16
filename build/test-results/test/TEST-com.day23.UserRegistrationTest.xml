@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.day23.UserRegistrationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-16T09:12:02" hostname="DESKTOP-617Q1NQ" time="0.757">
-  <properties/>
-  <testcase name="givenFirstName_WhenInFormat_ShouldReturnTrue()" classname="com.day23.UserRegistrationTest" time="0.6"/>
-  <testcase name="givenFirstName_WhenOurOfFormat_ShouldReturnFlase()" classname="com.day23.UserRegistrationTest" time="0.087"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
