@@ -17,6 +17,8 @@ package com.day23;
  *        - NOTE – All rules must be passed
  * UC7 :- Rule3 – Should  have at least 1 numeric number in the password
  *       - NOTE – All rules must be passed
+ * UC8 :- Rule4 – Has exactly 1 Special Character
+ *        - NOTE – All rules must be passed
  */
 
 /**
@@ -207,9 +209,10 @@ public class UserRegistration {
     }
 
     /**
-     *
+     * Create a method name as passwordRule3, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
      * @param password
-     * @return
+     * @return password matched the Regex
      */
     public boolean passwordRule3(String password) {
         /**
@@ -240,6 +243,39 @@ public class UserRegistration {
          */
         return matcher.matches();
 
+    }
+
+    /**
+     * Create a method name as passwordRule4, this method is boolean type that means its return op is true or false
+     * type, also this is parameterized method
+     * @param password
+     * @return password matched the Regex
+     */
+    public boolean passwordRule4(String password) {
+        /**
+         * Regex to check valid password.
+         * 1) ^ represents starting character of the string.
+         * 2) {8,} represents at least 8 characters or more than that characters.
+         * 3) [a-zA-z1-9] represents a lower case alphabet must occur at least 8 or more than that.
+         * 4) [A-Z]{1} represents an upper case alphabet that must occur at least once.
+         * 5) [1-9]{1}represents a digit must occur at least once.
+         * 6) [@$^]{1} represents a at least once special character.
+         * 6) $ represents the end of the string.
+         */
+        String regex = "^[A-Z]{1}+[a-zA-z1-9]{9,}[@$^]{1}[1-9]{1}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given password
+         *  and regular expression.
+         */
+        Matcher matcher = pattern.matcher(password);
+        /**
+         *  Return if the password matched the Regex
+         */
+        return matcher.matches();
     }
 
 }

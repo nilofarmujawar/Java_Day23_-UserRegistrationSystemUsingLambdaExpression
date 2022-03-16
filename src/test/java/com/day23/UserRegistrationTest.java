@@ -108,5 +108,19 @@ public class UserRegistrationTest {
         boolean result = userRegistration.passwordRule3("Bridgelabz");
         Assertions.assertEquals(false, result);
     }
+    /**
+     * test case for uc 8 password rule 4
+     */
+    @Test
+    public void givenPasswordRule4_WhenInFormat_ShouldReturnTrue() {
+        boolean result = userRegistration.passwordRule4("Bridgelabz@1");
+        Assertions.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenPasswordRule4_WhenOurOfFormat_ShouldReturnFalse() {
+        boolean result = userRegistration.passwordRule4("Bridelabz@@1");
+        Assertions.assertEquals(false, result);
+    }
 }
 
