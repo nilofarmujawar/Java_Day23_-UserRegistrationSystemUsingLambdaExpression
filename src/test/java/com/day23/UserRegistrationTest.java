@@ -136,4 +136,19 @@ public class UserRegistrationTest {
         boolean result = userRegistration.emailAddressSample("aabc.@gmail.com");
         Assertions.assertEquals(false, result);
     }
+    /**
+     * test case for uc 10 mood analyser
+     */
+    @Test
+    public void givenMessage_WhenHappy_ShouldReturnEntrySuccessful() {
+        String result = MoodAnalyser.analyseMood("I am in  Happy mood");
+        Assertions.assertEquals("Entry Successful", result);
+    }
+
+    @Test
+    public void givenEmail2_WhenNotProper_ShouldReturnEntryFailed() {
+        String result = MoodAnalyser.analyseMood("I am in Sad mood");
+        Assertions.assertEquals("Entry Failed", result);
+    }
+
 }
